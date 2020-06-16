@@ -4,10 +4,10 @@ from utils.defines import URL_ALPHAVANTAGE, API_KEY, BOVESPA_SIMBOL, INTERVAL_DI
 
 
 
-bp_bovespa = Blueprint('bovespa',__name__)
+bp_alphavantage = Blueprint('alphavantage',__name__)
 
 
-@bp_bovespa.route('/buscar-por-simbolo/', methods = ['GET'])
+@bp_alphavantage.route('/buscar-por-simbolo/', methods = ['GET'])
 def pontos_bovespa():
     try:
         symbol = request.args.get('symbol')
@@ -33,7 +33,7 @@ def pontos_bovespa():
            '&apikey='+API_KEY).json()
 
 
-@bp_bovespa.route('/buscar-por-chave/<keywords>', methods = ['GET'])
+@bp_alphavantage.route('/buscar-por-chave/<keywords>', methods = ['GET'])
 def buscar_por_chave(keywords):
     return get(URL_ALPHAVANTAGE+'/query?'+
         'function='+SYMBOL_SEARCH+

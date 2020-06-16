@@ -1,3 +1,18 @@
+###Configurações do banco de dados###
+import os
+
+POSTGRES_USER = os.environ['POSTGRES_USER']
+
+POSTGRES_PW = os.environ['POSTGRES_PW']
+
+POSTGRES_URL = os.environ['POSTGRES_URL']
+
+POSTGRES_DB =os.environ['POSTGRES_DB']
+
+
+
+
+
 ###Parâmetros da query no Alphavantage###
 
 URL_ALPHAVANTAGE  = 'https://www.alphavantage.co'
