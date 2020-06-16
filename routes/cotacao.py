@@ -6,7 +6,7 @@ from config.serialize import CotacaoSchema
 
 bp_cotacao = Blueprint('cotacao',__name__)
 
-@bp_cotacao.route('/cotacao/mostrar', methods = ['GET'])
+@bp_cotacao.route('/cotacao/mostrar/', methods = ['GET'])
 def mostrar():
    ct = CotacaoSchema(many = True)
    result = Cotacao.query.all()
@@ -14,7 +14,7 @@ def mostrar():
 
 
 
-@bp_cotacao.route('/cotacao/cadastrar', methods = ['POST'])
+@bp_cotacao.route('/cotacao/cadastrar/', methods = ['POST'])
 def cadastrar():
    ct = CotacaoSchema()
    cotacao, error = ct.load(request.json)
@@ -33,12 +33,12 @@ def deletar(id):
 
    
 
-@bp_cotacao.route('/cotacao/editar', methods = ['PUT'])
+@bp_cotacao.route('/cotacao/editar/', methods = ['PUT'])
 def editar():
     ct = CotacaoSchema()
     cotacao = request.json
     print (cotacao)
     query = Cotacao.query.filter(Cotacao.id == cotacao['id'])
-    query.update(book)
+    query.update(cotacao)
     current_app.db.session.commit()
     return ct.jsonify(query.first())

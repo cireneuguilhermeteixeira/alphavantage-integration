@@ -6,7 +6,7 @@ from config.serialize import EmpresaSchema
 
 bp_empresa = Blueprint('empresa',__name__)
 
-@bp_empresa.route('/empresa/mostrar', methods = ['GET'])
+@bp_empresa.route('/empresa/mostrar/', methods = ['GET'])
 def mostrar():
    us = EmpresaSchema(many = True)
    result = Empresa.query.all()
@@ -14,7 +14,7 @@ def mostrar():
 
 
 
-@bp_empresa.route('/empresa/cadastrar', methods = ['POST'])
+@bp_empresa.route('/empresa/cadastrar/', methods = ['POST'])
 def cadastrar():
    us = EmpresaSchema()
    empresa, error = us.load(request.json)
@@ -33,11 +33,11 @@ def deletar(id):
 
    
 
-@bp_empresa.route('/empresa/editar', methods = ['PUT'])
+@bp_empresa.route('/empresa/editar/', methods = ['PUT'])
 def editar():
     us = EmpresaSchema()
     empresa = request.json
     query = Empresa.query.filter(Empresa.id == empresa['id'])
-    query.update(book)
+    query.update(empresa)
     current_app.db.session.commit()
     return us.jsonify(query.first())

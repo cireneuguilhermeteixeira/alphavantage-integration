@@ -4,9 +4,9 @@ from config.serialize import UsuarioSchema
 
 
 
-bp_usuario = Blueprint('usuarios',__name__)
+bp_usuario = Blueprint('usuario',__name__)
 
-@bp_usuario.route('/usuario/mostrar', methods = ['GET'])
+@bp_usuario.route('/usuario/mostrar/', methods = ['GET'])
 def mostrar():
    us = UsuarioSchema(many = True)
    result = Usuario.query.all()
@@ -14,7 +14,7 @@ def mostrar():
 
 
 
-@bp_usuario.route('/usuario/cadastrar', methods = ['POST'])
+@bp_usuario.route('/usuario/cadastrar/', methods = ['POST'])
 def cadastrar():
    us = UsuarioSchema()
    usuario, error = us.load(request.json)
@@ -33,12 +33,12 @@ def deletar(id):
 
    
 
-@bp_usuario.route('/usuario/editar', methods = ['PUT'])
+@bp_usuario.route('/usuario/editar/', methods = ['PUT'])
 def editar():
     us = UsuarioSchema()
     usuario = request.json
     print (usuario)
     query = Usuario.query.filter(Usuario.id == usuario['id'])
-    query.update(book)
+    query.update(usuario)
     current_app.db.session.commit()
     return us.jsonify(query.first())
