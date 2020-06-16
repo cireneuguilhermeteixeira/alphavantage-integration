@@ -10,10 +10,10 @@ def configure(app):
 
 ##Modelo do usuário
 class Usuario(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    nome = db.Column(db.String(255))
-    idade = db.Column(db.String(255))
-    profissao = db.Column(db.String(255))
+    id          = db.Column(db.Integer, primary_key = True)
+    nome        = db.Column(db.String(255))
+    idade       = db.Column(db.String(255))
+    profissao   = db.Column(db.String(255))
 
 
 ##Modelo do usuário
@@ -32,9 +32,9 @@ class Empresa(db.Model):
 
 
 class Cotacao(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    open = db.Column(db.String(255))
-    high = db.Column(db.String(255))
-    low = db.Column(db.String(255))
-    close = db.Column(db.String(255))
-    volume = db.Column(db.String(255))
+    id          = db.Column(db.Integer, primary_key = True)
+    open        = db.Column(db.String(255))
+    high        = db.Column(db.String(255))
+    low         = db.Column(db.String(255))
+    close       = db.Column(db.String(255))
+    volume      = db.Column(db.String(255))
