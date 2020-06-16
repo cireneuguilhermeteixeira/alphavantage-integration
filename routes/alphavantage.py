@@ -7,8 +7,17 @@ from utils.defines import URL_ALPHAVANTAGE, API_KEY, BOVESPA_SIMBOL, INTERVAL_DI
 bp_alphavantage = Blueprint('alphavantage',__name__)
 
 
-@bp_alphavantage.route('/buscar-por-simbolo/', methods = ['GET'])
-def pontos_bovespa():
+
+@bp_alphavantage.route('/alphavantage/buscar_empresas_exemplo', methods = ['GET'])
+def buscar_empresas_exemplo():
+    return jsonify({
+        'empresas':'Lista de empresas'
+    })
+
+
+
+@bp_alphavantage.route('/alphavantage/buscar-por-simbolo/', methods = ['GET'])
+def buscar_por_simbolo():
     try:
         symbol = request.args.get('symbol')
         interval = request.args.get('interval')
@@ -33,7 +42,7 @@ def pontos_bovespa():
            '&apikey='+API_KEY).json()
 
 
-@bp_alphavantage.route('/buscar-por-chave/<keywords>', methods = ['GET'])
+@bp_alphavantage.route('/alphavantage/buscar-por-chave/<keywords>', methods = ['GET'])
 def buscar_por_chave(keywords):
     return get(URL_ALPHAVANTAGE+'/query?'+
         'function='+SYMBOL_SEARCH+
