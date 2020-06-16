@@ -5,7 +5,7 @@ flask-migrate==2.5.2
 marshmallow-sqlalchemy==0.13.2
 flask-marshmallow==0.8.0
 flask-sqlalchemy==2.4.1
-marshmallow==2.13.6
+marshmallow==2.15.1
 sqlalchemy==1.1.14
 psycopg2==2.8.4
 flask-Script==2.0.6
