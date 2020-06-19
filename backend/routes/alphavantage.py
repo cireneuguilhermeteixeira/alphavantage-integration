@@ -8,7 +8,7 @@ bp_alphavantage = Blueprint('alphavantage',__name__)
 
 
 
-@bp_alphavantage.route('/alphavantage/buscar_empresas_exemplo', methods = ['GET'])
+@bp_alphavantage.route('/alphavantage/buscar_empresas_exemplo/', methods = ['GET'])
 def buscar_empresas_exemplo():
     return jsonify({
         'empresas':'Lista de empresas'
@@ -34,17 +34,13 @@ def buscar_por_simbolo():
     if(interval not in INTERVAL_DIC):
         return jsonify({'message' : 'Erro encontrado. Tempo informado inválido'} ), 406
     
-    return get(URL_ALPHAVANTAGE+'/query?'+
-           'function='+TIME_SERIES_INTRADAY+
-           '&symbol='+symbol+
-           '&interval='+INTERVAL_DIC[interval]+
-           "&outputsize= full"+
-           '&apikey='+API_KEY).json()
+    url_to_request = URL_ALPHAVANTAGE+'/query?'+'function='+TIME_SERIES_INTRADAY+'&symbol='+symbol+'&interval='+INTERVAL_DIC[interval]+"&outputsize=full"+'&apikey='+API_KEY
+
+    return jsonify(get(url_to_request).json())
 
 
 @bp_alphavantage.route('/alphavantage/buscar-por-chave/<keywords>', methods = ['GET'])
 def buscar_por_chave(keywords):
-    return get(URL_ALPHAVANTAGE+'/query?'+
-        'function='+SYMBOL_SEARCH+
-        '&keywords='+keywords+
-        '&apikey='+API_KEY).json()
+    
+    url_to_request = URL_ALPHAVANTAGE+'/query?'+'function='+SYMBOL_SEARCH+'&keywords='+keywords+'&apikey='+API_KEY
+    return jsonify (get(url_to_request).json())

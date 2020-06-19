@@ -10,10 +10,12 @@ exit
 
 source env/bin/activate
 
+
+
 export POSTGRES_USER="ponto_tel_user"
 export POSTGRES_PW="pontotel"
 export POSTGRES_URL="127.0.0.1:5432"
-export POSTGRES_DB="ptl" //mudar pra ptl
+export POSTGRES_DB="ptl" 
 
 
 

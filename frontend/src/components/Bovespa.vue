@@ -47,11 +47,14 @@ export default {
     },
     methods: {
         getBovespa(){
-            this.axios.get(api).then((response) => {
+            this.axios.get("http://localhost:5000/alphavantage/buscar-por-simbolo/").then((response) => {
                 console.log(response.data)
             })
         }
     },
+    created(){
+        this.getBovespa()
+    }
 }
 </script>
 
