@@ -6,7 +6,6 @@
       </md-app-toolbar>
 
       <md-app-drawer md-permanent="full">
-        
         <md-list>
           <md-list-item v-for="pagina in paginas" :key="pagina.id" @click="changePage(pagina)">
             <md-icon>{{pagina.icon}}</md-icon>
@@ -27,14 +26,15 @@
 import Bovespa from './Bovespa.vue';
 import Empresas from './Empresas.vue';
 import Usuarios from './Usuarios.vue';
-
+import EmpresasSalvas from './EmpresasSalvas.vue';
 
 export default {
     name:"Body",
     components:{
         Bovespa,
         Empresas,
-        Usuarios
+        Usuarios,
+        EmpresasSalvas
     },
     data(){
         return {
@@ -55,7 +55,7 @@ export default {
                     id:3,
                     icon: 'save_alt',
                     title: 'Empresas Salvas',
-                    componentName: 'Empresas'
+                    componentName: 'EmpresasSalvas'
                 },
                 {
                     id:4,
