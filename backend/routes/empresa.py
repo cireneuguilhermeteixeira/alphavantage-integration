@@ -24,11 +24,14 @@ def mostrar():
 def cadastrar():
    try:
       us = EmpresaSchema()
-      empresa, error = us.load(request.json)
-      current_app.db.session.add(empresa)
-      current_app.db.session.commit()
-      return us.jsonify(empresa), 201   
-   
+      empresa, error = us.load(request.json)      
+      query = Empresa.query.filter(Empresa.symbol == empresa.symbol)
+      if(query.first() is None):
+         current_app.db.session.add(empresa)
+         current_app.db.session.commit()
+         return us.jsonify(empresa), 201   
+      else:
+         return jsonify({'message':'Essa empresa já foi salva.'}), 406
    except Exception as exceptionMessage:
       return jsonify( {'message' : str(exceptionMessage)}),406
    
@@ -56,6 +59,7 @@ def editar():
    try:
       us = EmpresaSchema()
       empresa = request.json
+      print(empresa)
       query = Empresa.query.filter(Empresa.id == empresa['id'])
       query.update(empresa)
       current_app.db.session.commit()

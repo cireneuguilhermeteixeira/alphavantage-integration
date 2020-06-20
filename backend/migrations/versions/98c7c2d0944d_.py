@@ -29,7 +29,6 @@ def upgrade():
     sa.Column('timezone', sa.String(length=255), nullable=False),
     sa.Column('currency', sa.String(length=255), nullable=False),
     sa.Column('matchScore', sa.String(length=255), nullable=False),
-    sa.Column('nome', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('usuario',
@@ -41,6 +40,7 @@ def upgrade():
     )
     op.create_table('cotacao',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('date', sa.String(length=255), nullable=False),
     sa.Column('open', sa.String(length=255), nullable=False),
     sa.Column('high', sa.String(length=255), nullable=False),
     sa.Column('low', sa.String(length=255), nullable=False),

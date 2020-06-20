@@ -33,7 +33,6 @@ class Empresa(db.Model):
     timezone    = db.Column(db.String(255), nullable=False)
     currency    = db.Column(db.String(255), nullable=False)
     matchScore  = db.Column(db.String(255), nullable=False)
-    nome        = db.Column(db.String(255), nullable=False)
     cotacoes    = relationship("Cotacao",   back_populates="empresa")
 
 
@@ -46,5 +45,6 @@ class Cotacao(db.Model):
     low         = db.Column(db.String(255), nullable=False)
     close       = db.Column(db.String(255), nullable=False)
     volume      = db.Column(db.String(255), nullable=False)
+    date        = db.Column(db.String(255), nullable=False)
     empresa_id  = db.Column(db.Integer,     db.ForeignKey('empresa.id'))
     empresa     = relationship("Empresa",   back_populates="cotacoes")

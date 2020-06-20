@@ -6,11 +6,11 @@ from config.serialize import CotacaoSchema
 
 bp_cotacao = Blueprint('cotacao',__name__)
 
-@bp_cotacao.route('/cotacao/mostrar/', methods = ['GET'])
-def mostrar():
+@bp_cotacao.route('/cotacao/mostrar/<empresa_id>', methods = ['GET'])
+def mostrar(empresa_id):
    try:
       ct = CotacaoSchema(many = True)
-      result = Cotacao.query.all()
+      result = Cotacao.query.filter(Cotacao.empresa_id == empresa_id)
       return ct.jsonify(result),200
    
    except Exception as exceptionMessage:
