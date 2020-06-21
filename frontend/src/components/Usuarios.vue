@@ -35,7 +35,7 @@
     </div>
 
     <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title>Salvar novo usuário</md-dialog-title>
+      <md-dialog-title>Formulário do usuário</md-dialog-title>
       <div class="md-layout">
         <div class="md-layout-item">
           <md-field>

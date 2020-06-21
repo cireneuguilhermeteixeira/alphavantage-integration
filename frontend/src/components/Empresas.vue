@@ -6,7 +6,7 @@
       <div class="md-layout" v-if="!buscaManual">
         <div class="md-layout-item">
           <md-field>
-            <label for="currentInterval">Intervalo</label>
+            <label for="currentSymbol">Símbolo</label>
             <md-select v-model="currentSymbol" name="currentSymbol" id="currentSymbol">
               <md-option :value="simbol" v-for="simbol in simbols" :key="simbol">{{simbol}}</md-option>
             </md-select>
@@ -106,9 +106,9 @@ export default {
   data() {
     return {
       buscaManual: false,
-      chave: "",
-      currentSymbol: "",
-      simbols: ["PETR4.SAO", "ITUB4.SAO", "VALE3.SAO"],
+      chave: '',
+      currentSymbol: '',
+      simbols: ['PETR4.SAO', 'ITUB4.SAO', 'VALE3.SAO'],
       empresas: null,
       chartOptions: null,
       component: null
@@ -139,6 +139,7 @@ export default {
           volume: element.value["5. volume"]
         };
       });
+      
 
       this.axios
         .post(`${api.apiUrl}/cotacao/cadastrar/`, cotacoes)
@@ -167,7 +168,7 @@ export default {
       Object.keys(empresa).forEach(key => {
         let keyFormatada = key.replace(key.substring(0, 3), "");
         empresaFormatada[keyFormatada] = empresa[key];
-      });
+      });      
 
       this.axios
         .post(`${api.apiUrl}/empresa/cadastrar/`, empresaFormatada)
@@ -202,7 +203,7 @@ export default {
         series: [
           {
             name: "",
-            data: [1, 2]
+            data: []
           }
         ]
       };

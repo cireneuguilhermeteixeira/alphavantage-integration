@@ -40,7 +40,7 @@ export default {
         series: [
           {
             name: "",
-            data: [1, 2]
+            data: []
           }
         ]
       },
