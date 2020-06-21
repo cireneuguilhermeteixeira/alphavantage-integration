@@ -1,5 +1,5 @@
 from flask import Blueprint, current_app, request, jsonify
-from config.models import Empresa
+from config.models import Empresa, Cotacao
 from config.serialize import EmpresaSchema
 
 
@@ -41,6 +41,7 @@ def cadastrar():
 @bp_empresa.route('/empresa/deletar/<id>', methods = ['DELETE'])
 def deletar(id):
    try:
+      Cotacao.query.filter(Cotacao.empresa_id == id).delete()
       Empresa.query.filter(Empresa.id == id).delete()
       current_app.db.session.commit()
       return jsonify('Objeto deletado!!!')

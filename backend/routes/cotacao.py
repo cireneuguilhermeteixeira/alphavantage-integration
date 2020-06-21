@@ -22,8 +22,11 @@ def cadastrar():
    try:
    
       emp = EmpresaSchema()
-      ct = CotacaoSchema()
+      ct = CotacaoSchema(many = True)
+
       empresa = Empresa.query.filter(Empresa.symbol == request.json[0]['symbol']).first()
+      Cotacao.query.filter(Cotacao.empresa_id == emp.jsonify(empresa).json['id']).delete()
+   
       if(empresa is None):
          return jsonify({'message':'Impossível salvar cotações sem salvar empresa;'}), 406
       
@@ -36,14 +39,13 @@ def cadastrar():
          low= cotacao['low'], 
          high = cotacao['high'],
          open = cotacao['open'],
-         close = cotacao[0]['close'],
+         close = cotacao['close'],
          date = cotacao['date'],
          volume = cotacao['volume'],
          empresa_id = cotacao['empresa_id'])
-         
          current_app.db.session.add(cotacao_formatada)
-         current_app.db.session.commit()
 
+      current_app.db.session.commit()
       return ct.jsonify(cotacoes), 201
    
    except Exception as exceptionMessage:
@@ -57,7 +59,7 @@ def deletar(id):
    try:
       Cotacao.query.filter(Cotacao.id == id).delete()
       current_app.db.session.commit()
-      return jsonify('Objeto deletado!!!')
+      return jsonify('Objeto deletado!!!'), 200
    
    except Exception as exceptionMessage:
       return jsonify( {'message' : str(exceptionMessage)}),406
@@ -73,7 +75,7 @@ def editar():
       query = Cotacao.query.filter(Cotacao.id == cotacao['id'])
       query.update(cotacao)
       current_app.db.session.commit()
-      return ct.jsonify(query.first())
+      return ct.jsonify(query.first()), 200
    
    except Exception as exceptionMessage:
       return jsonify( {'message' : str(exceptionMessage)}),406

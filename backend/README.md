@@ -10,6 +10,7 @@ exit
 
 source env/bin/activate
 
+https://documenter.getpostman.com/view/11802905/SzzoZFJf
 
 
 export POSTGRES_USER="ponto_tel_user"
