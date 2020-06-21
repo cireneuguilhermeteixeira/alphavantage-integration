@@ -36,6 +36,7 @@ class EmpresaSchema(ma.ModelSchema):
 class CotacaoSchema(ma.ModelSchema):
     class Meta:
         model = Cotacao
+    date        = fields.Str(required=True)
     open        = fields.Str(required=True)
     high        = fields.Str(required=True)
     low         = fields.Str(required=True)

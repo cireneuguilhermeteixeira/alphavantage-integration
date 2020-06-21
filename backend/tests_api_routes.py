@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_testing import LiveServerTestCase, TestCase
+from flask_testing import TestCase
 import app as api
 
 

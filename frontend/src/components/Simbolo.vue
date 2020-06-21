@@ -80,6 +80,8 @@
 
 <script>
 import api from "../enviroment.js";
+import { mapMutations} from "vuex";
+
 
 export default {
   props:[
@@ -98,6 +100,9 @@ export default {
     };
   },
   methods: {
+
+    ...mapMutations(["changeCotacoes"]),
+
     getDadosPorSimbolo(interval, symbol, outputsize) {
       this.axios
         .get(
@@ -108,6 +113,7 @@ export default {
           this.jsonCotacoes = this.managerValue(
             response.data[`Time Series (${interval}min)`]
           );
+          this.changeCotacoes(this.jsonCotacoes);
           this.metadados = response.data["Meta Data"];
           this.confChart.series = [
             {
@@ -137,6 +143,7 @@ export default {
     }
   },
   computed: {
+
     formatData() {
       let horario = new Date(this.jsonUltimaCotacao.key);
       return horario.toLocaleString();

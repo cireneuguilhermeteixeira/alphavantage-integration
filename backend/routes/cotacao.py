@@ -1,6 +1,6 @@
 from flask import Blueprint, current_app, request, jsonify
-from config.models import Cotacao
-from config.serialize import CotacaoSchema
+from config.models import Cotacao, Empresa
+from config.serialize import CotacaoSchema, EmpresaSchema
 
 
 
@@ -20,13 +20,34 @@ def mostrar(empresa_id):
 @bp_cotacao.route('/cotacao/cadastrar/', methods = ['POST'])
 def cadastrar():
    try:
+   
+      emp = EmpresaSchema()
       ct = CotacaoSchema()
-      cotacao, error = ct.load(request.json)
-      current_app.db.session.add(cotacao)
-      current_app.db.session.commit()
-      return ct.jsonify(cotacao), 201
+      empresa = Empresa.query.filter(Empresa.symbol == request.json[0]['symbol']).first()
+      if(empresa is None):
+         return jsonify({'message':'Impossível salvar cotações sem salvar empresa;'}), 406
+      
+      cotacoes = request.json
+      for cotacao in cotacoes:
+         cotacao['empresa_id'] = emp.jsonify(empresa).json['id']
+         del cotacao['symbol']   
+
+         cotacao_formatada = Cotacao(
+         low= cotacao['low'], 
+         high = cotacao['high'],
+         open = cotacao['open'],
+         close = cotacao[0]['close'],
+         date = cotacao['date'],
+         volume = cotacao['volume'],
+         empresa_id = cotacao['empresa_id'])
+         
+         current_app.db.session.add(cotacao_formatada)
+         current_app.db.session.commit()
+
+      return ct.jsonify(cotacoes), 201
    
    except Exception as exceptionMessage:
+      print (str(exceptionMessage))
       return jsonify( {'message' : str(exceptionMessage)}),406
    
 

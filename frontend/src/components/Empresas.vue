@@ -77,8 +77,7 @@
       <div class="md-layout">
         <div class="md-layout-item">
           <md-button @click="salvarCotacoes" class="md-raised md-primary">
-            <md-icon class="md-primary">sync</md-icon>
-            Sincronizar cotações
+            <md-icon class="md-primary">sync</md-icon>Sincronizar cotações
           </md-button>
         </div>
         <div class="md-layout-item md-size-15">
@@ -98,6 +97,7 @@
 <script>
 import api from "../enviroment.js";
 import Simbolo from "@/components/Simbolo.vue";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -127,8 +127,39 @@ export default {
       this.chartOptions = null;
     },
 
-    salvarCotacoes(){
+    async salvarCotacoes() {
+      let cotacoes = this.cotacoes.map(element => {
+        return {
+          symbol: this.currentSymbol,
+          date: element.key,
+          open: element.value["1. open"],
+          high: element.value["2. high"],
+          low: element.value["3. low"],
+          close: element.value["4. close"],
+          volume: element.value["5. volume"]
+        };
+      });
 
+      this.axios
+        .post(`${api.apiUrl}/cotacao/cadastrar/`, cotacoes)
+        .then(() => this.$toast.success("Cotações salvas com sucesso."))
+        .catch(() => {
+          this.$toast.error("Erro ao tentar salvar cotações.");
+        });
+
+      //for (let i = 0; i < cotacoes.lenth; i++) {
+
+      // const promises = cotacoes.map(async cotacao => {
+      //   await this.axios.post(`${api.apiUrl}/cotacao/cadastrar/`, cotacao);
+      // });
+
+      // await Promise.all(promises)
+      //   .then(() => this.$toast.success("Cotações salvas com sucesso."))
+      //   .catch(() => {
+      //     this.$toast.error("Erro ao tentar salvar cotações.");
+      //   });
+
+      //}
     },
 
     salvarEmpresa(empresa) {
@@ -137,7 +168,7 @@ export default {
         let keyFormatada = key.replace(key.substring(0, 3), "");
         empresaFormatada[keyFormatada] = empresa[key];
       });
-      
+
       this.axios
         .post(`${api.apiUrl}/empresa/cadastrar/`, empresaFormatada)
         .then(() => this.$toast.success("Empresa salva com sucesso."))
@@ -177,6 +208,9 @@ export default {
       };
       this.currentSymbol = simbolo;
     }
+  },
+  computed: {
+    ...mapState(["cotacoes"])
   }
 };
 </script>

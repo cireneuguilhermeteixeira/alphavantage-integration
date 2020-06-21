@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-//import store from './store.js';
+import store from './store.js';
 import VueMaterial from 'vue-material';
 import HighchartsVue from "highcharts-vue";
 import 'vue-material/dist/vue-material.css'
@@ -22,12 +22,9 @@ Vue.use(HighchartsVue);
 Vue.use(VueAxios, axios)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
-Vue.use(VueToast,{
-  // One of options
-  position: 'top'
-});
+Vue.use(VueToast,{ position: 'top'});
 
 new Vue({
-  //store,
+  store,
   render: h => h(App),
 }).$mount('#app')
