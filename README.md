@@ -10,13 +10,6 @@ Além disso, no sistema é possível fazer um CRUD de usuários, empresas e cota
 
 Para ter acesso à documentação da API e saber quais os endpoints existentes e como é o comportamento de cada um deles acesse o [Link do POSTMAN aqui](https://documenter.getpostman.com/view/11802905/SzzoZFJf).
 
----
-
-# Estrutura do projeto
-
-O projeto está dividido em uma arquitetura cliente-servidor. O lado do servidor foi feito em Python 3.7 e consome, assíncronamente, as API's fornecidas pela [Alpha Vantage](https://www.alphavantage.co/) para fornecer os dados da aplicação.
-O lado do cliente foi desenvolvido com Angular 7 e componentes do Material Design. Existe também uma camada de banco de dados desenvolvida com PostgreSQL para persistência de dados sobre empresas e suas cotações recebidas durante a execução da aplicação.
-
 
 ---
 
