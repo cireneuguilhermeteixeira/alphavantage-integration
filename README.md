@@ -140,13 +140,21 @@ O projeto foi configurado para execução com Docker Compose. Contudo, é possí
     ```
 
       Logo depois, execute os seguintes comandos para efetuar as migrations.
-
+    
     ```
       flask db init
       flask db migrate
       flask db upgrade
 
     ```
+    OBS: Caso ocorra algum problema ao executar os comandos acima, exclua a pasta migrations e tente novamente.
+    Se o erro persistir importe as tabelas manualmente pelo arquivo sql/create_tables.sql:
+    
+    ```
+      sudo -u postgres psql ptl
+      \i sql/create_tables.sql
+    ```
+
     Logo depois pode executar a aplicação:
 
     ```
