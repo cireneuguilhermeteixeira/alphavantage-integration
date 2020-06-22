@@ -91,7 +91,7 @@ Para a camada de banco de dados foi utilizada a seguinte dependência:
       npm run serve
 
     ```
-    Se tudo ocorrer bem o projeto estará rodando localmente na porta 8080.
+    Se tudo ocorrer bem a aplicação estará rodando localmente na porta 8080.
 
 ---
 ###  Configuração da parte Backend
@@ -163,6 +163,9 @@ Para a camada de banco de dados foi utilizada a seguinte dependência:
       python3 app.py
 
     ```
+    Se tudo ocorrer bem a aplicação estará rodando localmente na porta 5000.
+
+
 ---
 
 ## Execução de Testes
