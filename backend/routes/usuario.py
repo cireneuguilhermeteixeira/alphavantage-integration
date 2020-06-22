@@ -26,6 +26,7 @@ def cadastrar():
    try:
       us = UsuarioSchema()
       usuario, error = us.load(request.json)
+      print(usuario)
       current_app.db.session.add(usuario)
       current_app.db.session.commit()
       return us.jsonify(usuario), 201
@@ -60,7 +61,7 @@ def editar():
       query = Usuario.query.filter(Usuario.id == usuario['id'])
       query.update(usuario)
       current_app.db.session.commit()
-      return us.jsonify(query.first())
+      return us.jsonify(query.first()), 201
    except Exception as exceptionMessage:   
       return jsonify( {'message' : str(exceptionMessage)}),406
 

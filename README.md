@@ -195,8 +195,12 @@ Execute o comando pelo terminal na raiz do projeto:
 
 ## Melhorias
 
+* Melhorias nos testes
+
 * Melhorar as respostas do backend para serem reproduzidas de maneira mais clara para usuário caso ocorra algum erro.
 
 * Configurar ambiente para rodar com Docker.
 
 * Melhorar a interface do usuário, tais como animações de loads para dá um melhor feedback ao usuário em requisições que demandarem mais tempo.
+
+* Tipificar melhor os objetos pela parte do Vue

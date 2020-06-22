@@ -75,7 +75,7 @@ def editar():
       query = Cotacao.query.filter(Cotacao.id == cotacao['id'])
       query.update(cotacao)
       current_app.db.session.commit()
-      return ct.jsonify(query.first()), 200
+      return ct.jsonify(query.first()), 201
    
    except Exception as exceptionMessage:
       return jsonify( {'message' : str(exceptionMessage)}),406

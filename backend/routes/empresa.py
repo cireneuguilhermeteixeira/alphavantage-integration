@@ -44,7 +44,7 @@ def deletar(id):
       Cotacao.query.filter(Cotacao.empresa_id == id).delete()
       Empresa.query.filter(Empresa.id == id).delete()
       current_app.db.session.commit()
-      return jsonify('Objeto deletado!!!')
+      return jsonify('Objeto deletado!!!'),200
    
    except Exception as exceptionMessage:
       return jsonify( {'message' : str(exceptionMessage)}),406
@@ -64,7 +64,7 @@ def editar():
       query = Empresa.query.filter(Empresa.id == empresa['id'])
       query.update(empresa)
       current_app.db.session.commit()
-      return us.jsonify(query.first())
+      return us.jsonify(query.first()), 201
    
    except Exception as exceptionMessage:
       return jsonify( {'message' : str(exceptionMessage)}),406

@@ -31,11 +31,11 @@ def buscar_por_simbolo():
     
     url_to_request = URL_ALPHAVANTAGE+'/query?'+'function='+TIME_SERIES_INTRADAY+'&symbol='+symbol+'&interval='+INTERVAL_DIC[interval]+'&outputsize='+outputsize+'&apikey='+API_KEY
 
-    return jsonify(get(url_to_request).json())
+    return jsonify(get(url_to_request).json()),200
 
 
 @bp_alphavantage.route('/alphavantage/buscar-por-chave/<keywords>', methods = ['GET'])
 def buscar_por_chave(keywords):
     
     url_to_request = URL_ALPHAVANTAGE+'/query?'+'function='+SYMBOL_SEARCH+'&keywords='+keywords+'&apikey='+API_KEY
-    return jsonify (get(url_to_request).json())
+    return jsonify (get(url_to_request).json()),200
