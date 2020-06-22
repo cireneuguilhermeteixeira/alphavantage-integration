@@ -64,9 +64,7 @@ Para a camada de banco de dados foi utilizada a seguinte dependência:
   - SGBD relacional em uma de suas versões mais atuais.
 ---
 
-## Configuração do ambiente
 
-O projeto foi configurado para execução com Docker Compose. Contudo, é possível fazer a execução manualmente.
 
 ###  Configuração da parte FrontEnd
 
