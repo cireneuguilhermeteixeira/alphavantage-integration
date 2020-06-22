@@ -186,7 +186,7 @@ Execute o comando pelo terminal na raiz do projeto:
 ---  
   
 ![Tela de exibição dos usuários](https://i.imgur.com/gWja6go.png)
-  *Lista de empresas buscadas por chaves.*
+  *Lista de usuários.*
   
 
 ---  
