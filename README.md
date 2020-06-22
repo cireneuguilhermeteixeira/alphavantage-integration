@@ -57,6 +57,10 @@ Para a aplicação em Vue foram usadas, principalmente, as seguintes ferramentas
 + [HighchartsVue](https://www.highcharts.com/blog/tutorials/highcharts-vue-wrapper/)
   - Componente para exibição de dados em formato gráfico.
 
++ [Axios](https://br.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html/)
+  - Uma biblioteca para trabalhar com requisições http.
+
+
 ---
 
 Para a camada de banco de dados foi utilizada a seguinte dependência:
