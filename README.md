@@ -144,8 +144,6 @@ Para a camada de banco de dados foi utilizada a seguinte dependência:
       Logo depois, execute os seguintes comandos para efetuar as migrations.
     
     ```
-      flask db init
-      flask db migrate
       flask db upgrade
 
     ```
